@@ -46,3 +46,9 @@ docker build -t my-spring-boot-app .
 ```
 docker run -p 8080:8080 my-spring-boot-app
 ```
+
+## If Your postgres inside the docker then
+
+```
+docker network create my-network; docker run -d --name my-postgres --network my-network -e POSTGRES_DB=postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5433:5432 postgres:latest; docker build -t springboot-app .; docker run -d --name my-springboot --network my-network -e DB_HOST=my-postgres -e DB_PORT=5432 -e DB_NAME=postgres -e DB_USERNAME=postgres -e DB_PASSWORD=postgres -p 8080:8080 springboot-app
+```
